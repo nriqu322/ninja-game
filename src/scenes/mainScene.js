@@ -4,7 +4,7 @@ import Phaser from 'phaser';
 
 class MainScene extends Phaser.Scene {
   constructor() {
-    super({ key: 'MainScene', active: true });
+    super({ key: 'MainScene' });
   }
 
   preload() {
@@ -28,12 +28,5 @@ class MainScene extends Phaser.Scene {
 
   // update() {};
 }
-
-// new Phaser.Game({
-//   width: 800,
-//   height: 600,
-//   parent: 'game-container',
-//   scene: [MainScene],
-// });
 
 export default MainScene;
