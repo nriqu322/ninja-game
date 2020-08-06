@@ -1,14 +1,14 @@
 import Phaser from 'phaser';
-import logo from '../resources/images/ninja-logo.png';
-import background from '../resources/images/static_bg.jpg';
-import sky from '../resources/images/sky_bg.png';
-import city from '../resources/images/city_mg.png';
-import play from '../resources/images/play-btn.png';
-import menu from '../resources/images/menu-btn.png';
-import instructions from '../resources/images/instructions-btn.png';
-import ninjaIcon from '../resources/images/ninja-icon.png';
-// import ninja from '../resources/images/ninja.png';
-// import ninjaJson from '../resources/images/ninja.json';
+import logo from '../assets/images/ninja-logo.png';
+import background from '../assets/images/static_bg.jpg';
+import sky from '../assets/images/sky_bg.png';
+import city from '../assets/images/city_mg.png';
+import play from '../assets/images/play-btn.png';
+import menu from '../assets/images/menu-btn.png';
+import instructions from '../assets/images/instructions-btn.png';
+import ninjaIcon from '../assets/images/ninja-icon.png';
+// import ninja from '../assets/images/ninja.png';
+// import ninjaJson from '../assets/images/ninja.json';
 
 class LoadScene extends Phaser.Scene {
   constructor() {

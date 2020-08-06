@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
-// import ninja from '../ninja.png';
-// import ninjaJason from '../ninja.json';
+import ninjaIdle from '../assets/characters/ninja-idle.png';
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -8,22 +7,23 @@ class MainScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.atlas('ninja', 'ninja.png', 'ninja.json');
+    this.load.spritesheet('ninjaIdle', ninjaIdle, { frameWidth: 232, frameHeight: 439 });
   }
 
   create() {
     console.log('Ready');
-    this.ninja = this.add.sprite(200, 200, 'ninja');
-    // hero = this.physics.add.sprite(200, 200, 'ninja');
-    // hero.setCollideWorldBounds(true);
-    // hero.setScale(1);
+    const ninja = this.physics.add.sprite(200, 500, 'ninjaIdle');
+    ninja.setScale(0.2);
+    ninja.setCollideWorldBounds(true);
 
-  //   this.anims.create({
-  //     key: 'idle',
-  //     frames: this.anims.generateFrameNumbers('ninja', { start: 0, end: 9 }),
-  //     frameRate: 10,
-  //     repeat: -1,
-  //   });
+    this.anims.create({
+      key: 'idle',
+      frames: this.anims.generateFrameNumbers('ninjaIdle', { start: 0, end: 9 }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    ninja.anims.play('idle');
   }
 
   // update() {};
