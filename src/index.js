@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import MainScene from './scenes/mainScene';
 import MainMenu from './scenes/mainMenu';
 import LoadScene from './scenes/loadScene';
+import Instructions from './scenes/instructions';
 
 const config = {
   type: Phaser.AUTO,
@@ -11,6 +12,7 @@ const config = {
   scene: [
     LoadScene,
     MainMenu,
+    Instructions,
     MainScene,
   ],
   physics: {

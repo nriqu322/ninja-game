@@ -1,10 +1,10 @@
 import Phaser from 'phaser';
-// import MainMenu from './mainMenu';
 import logo from '../resources/images/ninja-logo.png';
 import background from '../resources/images/static_bg.jpg';
 import sky from '../resources/images/sky_bg.png';
 import city from '../resources/images/city_mg.png';
 import play from '../resources/images/play-btn.png';
+import menu from '../resources/images/menu-btn.png';
 import instructions from '../resources/images/instructions-btn.png';
 import ninjaIcon from '../resources/images/ninja-icon.png';
 // import ninja from '../resources/images/ninja.png';
@@ -21,6 +21,7 @@ class LoadScene extends Phaser.Scene {
     this.load.image('city', city);
     this.load.image('logo', logo);
     this.load.image('play', play);
+    this.load.image('menu', menu);
     this.load.image('instructions', instructions);
     this.load.image('ninjaIcon', ninjaIcon);
     // this.load.atlas('ninja', ninja, ninjaJson);
@@ -55,18 +56,11 @@ class LoadScene extends Phaser.Scene {
     });
     percentText.setOrigin(0.5, 0.5);
 
-    // const loadingBar = this.add.graphics({
-    //   fillStyle: {
-    //     color: 0xffffff,
-    //   },
-    // });
-
     this.load.on('progress', (value) => {
       percentText.setText(`${parseInt(value * 100, 10)}%`);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(280, 310, 300 * value, 30);
-      // loadingBar.fillRect(0, this.game.renderer.height / 2, this.game.renderer.width * percent, 50);
     });
 
     this.load.on('complete', () => {
