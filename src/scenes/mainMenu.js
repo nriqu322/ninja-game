@@ -9,8 +9,6 @@ class MainMenu extends Phaser.Scene {
     this.add.image(300, 250, 'background');
     this.add.image(450, 150, 'logo');
 
-    const instructionsBtn = this.add.image(450, 420, 'instructions');
-
     const hoverImage = this.add.image(100, 100, 'ninjaIcon').setDepth(1);
     hoverImage.setScale(0.1);
     hoverImage.setVisible(false);
@@ -35,7 +33,7 @@ class MainMenu extends Phaser.Scene {
     // }
     // playButton(450, 350, 0.6, 'play');
 
-    const playBtn = this.add.image(450, 350, 'play').setScale(0.6);
+    const playBtn = this.add.image(450, 320, 'play').setScale(0.6);
     playBtn.setInteractive();
 
     playBtn.on('pointerover', () => {
@@ -52,6 +50,7 @@ class MainMenu extends Phaser.Scene {
       this.scene.start('MainScene');
     });
 
+    const instructionsBtn = this.add.image(450, 390, 'instructions');
     instructionsBtn.setInteractive();
 
     instructionsBtn.on('pointerover', () => {
@@ -66,6 +65,23 @@ class MainMenu extends Phaser.Scene {
 
     instructionsBtn.on('pointerup', () => {
       this.scene.start('Instructions');
+    });
+
+    const leaderBoardBtn = this.add.image(450, 460, 'leaderBoard');
+    leaderBoardBtn.setInteractive();
+
+    leaderBoardBtn.on('pointerover', () => {
+      hoverImage.setVisible(true);
+      hoverImage.x = leaderBoardBtn.x - 230;
+      hoverImage.y = leaderBoardBtn.y;
+    });
+
+    leaderBoardBtn.on('pointerout', () => {
+      hoverImage.setVisible(false);
+    });
+
+    leaderBoardBtn.on('pointerup', () => {
+      this.scene.start('LeaderBoard');
     });
   }
 }

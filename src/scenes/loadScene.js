@@ -4,6 +4,7 @@ import background from '../assets/images/static_bg.jpg';
 import sky from '../assets/images/sky_bg.png';
 import city from '../assets/images/city_mg.png';
 import play from '../assets/images/play-btn.png';
+import playAgain from '../assets/images/play-again-btn.png';
 import menu from '../assets/images/menu-btn.png';
 import instructions from '../assets/images/instructions-btn.png';
 import ninjaIcon from '../assets/images/ninja-icon.png';
@@ -12,6 +13,7 @@ import ninjaJump from '../assets/characters/ninja-jump.png';
 import ninjaRun from '../assets/characters/ninja-run.png';
 import ninjaDead from '../assets/characters/ninja-dead.png';
 import block from '../assets/images/block.png';
+import leaderBoard from '../assets/images/leaderboard-btn.png';
 
 class LoadScene extends Phaser.Scene {
   constructor() {
@@ -24,8 +26,10 @@ class LoadScene extends Phaser.Scene {
     this.load.image('city', city);
     this.load.image('logo', logo);
     this.load.image('play', play);
+    this.load.image('playAgain', playAgain);
     this.load.image('menu', menu);
     this.load.image('instructions', instructions);
+    this.load.image('leaderBoard', leaderBoard);
     this.load.image('ninjaIcon', ninjaIcon);
     this.load.spritesheet('ninjaIdle', ninjaIdle, { frameWidth: 232, frameHeight: 439 });
     this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });

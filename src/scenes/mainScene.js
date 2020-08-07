@@ -23,8 +23,9 @@ class MainScene extends Phaser.Scene {
       this.platformPool.remove(platform);
     } else {
       platform = this.physics.add.sprite(posX, 450, 'platform');
-      platform.setVelocityX(-100);
-      platform.setGravityY(-300);
+      platform.setScale(0.5);
+      platform.setVelocityX(Phaser.Math.Between(-180, -250));
+      platform.setGravityY(-500);
       this.platformGroup.add(platform);
       platform.setImmovable(true);
     }
@@ -41,7 +42,7 @@ class MainScene extends Phaser.Scene {
     // this.block2 = this.add.image(80, 400, 'block').setScale(0.8);
 
     this.ninja = this.physics.add.sprite(200, 300, 'ninjaIdle');
-    this.ninja.setScale(0.2);
+    this.ninja.setScale(0.12);
     // this.ninja.setCollideWorldBounds(true);
 
     this.anims.create({
@@ -100,15 +101,48 @@ class MainScene extends Phaser.Scene {
 
     if (cursors.up.isDown && this.ninja.body.touching.down) {
       this.ninja.anims.play('jump', true);
-      this.ninja.setVelocityY(-250);
+      this.ninja.setVelocityY(-200);
     }
 
     if (this.ninja.y > 600) {
       this.scene.start('GameOver');
     }
 
-    if (this.ninja.x < 0) {
+    if (this.ninja.x < -50) {
       this.scene.start('GameOver');
+    }
+
+    // recycling platforms
+    let minDistance = 900;
+    let rightmostPlatformHeight = 0;
+
+    this.platformGroup.getChildren().forEach((platform) => {
+      const platformDistance = 900 - platform.x - platform.displayWidth / 2;
+      if (platformDistance < minDistance) {
+        minDistance = platformDistance;
+        rightmostPlatformHeight = platform.y;
+      }
+
+      if (platform.x < -platform.displayWidth / 2) {
+        this.platformGroup.killAndHide(platform);
+        this.platformGroup.remove(platform);
+      }
+    }, this);
+
+    // adding new platforms
+    if (minDistance > this.nextPlatformDistance) {
+      const nextPlatformWidth = Phaser.Math.Between(50, 250);
+      const platformRandomHeight = 10 * Phaser.Math.Between(-40, 40);
+
+      const nextPlatformGap = rightmostPlatformHeight + platformRandomHeight;
+      const minPlatformHeight = window.innerHeight * 0.4;
+      const maxPlatformHeight = window.innerHeight * 0.8;
+      const nextPlatformHeight = Phaser.Math.Clamp(
+        nextPlatformGap,
+        minPlatformHeight,
+        maxPlatformHeight,
+      );
+      this.addPlatform(nextPlatformWidth, 900 + nextPlatformWidth / 2, nextPlatformHeight);
     }
   }
 }
