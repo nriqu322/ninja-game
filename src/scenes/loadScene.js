@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import logo from '../assets/images/ninja-logo.png';
 import background from '../assets/images/static_bg.jpg';
-import sky from '../assets/images/sky_bg.png';
-import city from '../assets/images/city_mg.png';
+// import sky from '../assets/images/sky_bg.png';
+// import city from '../assets/images/city_mg.png';
 import play from '../assets/images/play-btn.png';
 import menu from '../assets/images/menu-btn.png';
 import instructions from '../assets/images/instructions-btn.png';
@@ -17,8 +17,8 @@ class LoadScene extends Phaser.Scene {
 
   preload() {
     this.load.image('background', background);
-    this.load.image('sky', sky);
-    this.load.image('city', city);
+    // this.load.image('sky', sky);
+    // this.load.image('city', city);
     this.load.image('logo', logo);
     this.load.image('play', play);
     this.load.image('menu', menu);
