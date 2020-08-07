@@ -31,7 +31,7 @@ class LoadScene extends Phaser.Scene {
     this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });
     this.load.spritesheet('ninjaRun', ninjaRun, { frameWidth: 348, frameHeight: 439 });
     this.load.spritesheet('ninjaDead', ninjaDead, { frameWidth: 425, frameHeight: 439 });
-    this.load.image('block', block);
+    this.load.image('platform', block);
 
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();

@@ -13,17 +13,36 @@ class MainScene extends Phaser.Scene {
   //   this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });
   // }
 
+  addPlatform(platformWidth, posX) {
+    let platform;
+    if (this.platformPool.getLength()) {
+      platform = this.platformPool.getFirst();
+      platform.x = posX;
+      platform.active = true;
+      platform.visible = true;
+      this.platformPool.remove(platform);
+    } else {
+      platform = this.physics.add.sprite(posX, 450, 'platform');
+      platform.setVelocityX(-100);
+      platform.setGravityY(-300);
+      this.platformGroup.add(platform);
+      platform.setImmovable(true);
+    }
+    platform.displayWidth = platformWidth;
+    this.nextPlatformDistance = Phaser.Math.Between(70, 200);
+  }
+
   create() {
     // this.ninjaObj = new Ninja(this, 150, 500, 'ninjaIdle');
     this.add.image(450, 300, 'sky').setScale(3.35);
     this.add.image(450, 300, 'city').setScale(3.35);
 
-    this.block = this.add.image(30, 400, 'block').setScale(0.8);
-    this.block2 = this.add.image(80, 400, 'block').setScale(0.8);
+    // this.block = this.add.image(30, 400, 'block').setScale(0.8);
+    // this.block2 = this.add.image(80, 400, 'block').setScale(0.8);
 
     this.ninja = this.physics.add.sprite(200, 300, 'ninjaIdle');
     this.ninja.setScale(0.2);
-    this.ninja.setCollideWorldBounds(true);
+    // this.ninja.setCollideWorldBounds(true);
 
     this.anims.create({
       key: 'idle',
@@ -36,7 +55,7 @@ class MainScene extends Phaser.Scene {
       key: 'jump',
       frames: this.anims.generateFrameNumbers('ninjaJump', { start: 0, end: 9 }),
       frameRate: 40,
-      repeat: 0,
+      repeat: -1,
     });
 
     this.anims.create({
@@ -45,6 +64,23 @@ class MainScene extends Phaser.Scene {
       frameRate: 40,
       repeat: -1,
     });
+
+    this.platformGroup = this.add.group({
+      // once a platform is removed, it's added to the pool
+      removeCallback(platform) {
+        platform.scene.platformPool.add(platform);
+      },
+    });
+
+    this.platformPool = this.add.group({
+      // once a platform is removed from the pool, it's added to the active platforms group
+      removeCallback(platform) {
+        platform.scene.platformGroup.add(platform);
+      },
+    });
+
+    this.addPlatform(800, 400);
+    this.physics.add.collider(this.ninja, this.platformGroup);
   }
 
   update() {
@@ -62,7 +98,7 @@ class MainScene extends Phaser.Scene {
       this.ninja.setVelocityX(0);
     }
 
-    if (cursors.up.isDown && this.ninja.body.blocked.down) {
+    if (cursors.up.isDown && this.ninja.body.touching.down) {
       this.ninja.anims.play('jump', true);
       this.ninja.setVelocityY(-250);
     }
