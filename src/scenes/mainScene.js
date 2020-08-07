@@ -102,6 +102,14 @@ class MainScene extends Phaser.Scene {
       this.ninja.anims.play('jump', true);
       this.ninja.setVelocityY(-250);
     }
+
+    if (this.ninja.y > 600) {
+      this.scene.start('GameOver');
+    }
+
+    if (this.ninja.x < 0) {
+      this.scene.start('GameOver');
+    }
   }
 }
 

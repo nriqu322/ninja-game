@@ -3,6 +3,7 @@ import MainScene from './scenes/mainScene';
 import MainMenu from './scenes/mainMenu';
 import LoadScene from './scenes/loadScene';
 import Instructions from './scenes/instructions';
+import GameOver from './scenes/gameOver';
 
 const config = {
   type: Phaser.AUTO,
@@ -14,6 +15,7 @@ const config = {
     MainMenu,
     Instructions,
     MainScene,
+    GameOver,
   ],
   physics: {
     default: 'arcade',
@@ -24,4 +26,5 @@ const config = {
   },
 };
 
+// eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);
