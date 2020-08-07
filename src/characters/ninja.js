@@ -59,6 +59,11 @@ class Ninja extends Phaser.Physics.Arcade.Sprite {
       repeat: -1,
     });
   }
+
+  idle() {
+    // this.setVelocityX(0);
+    this.anims.play('idle', true);
+  }
 }
 
 export default Ninja;
