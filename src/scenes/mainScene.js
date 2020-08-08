@@ -8,10 +8,11 @@ class MainScene extends Phaser.Scene {
     super({ key: 'MainScene' });
   }
 
-  // preload() {
-  //   this.load.spritesheet('ninjaIdle', ninjaIdle, { frameWidth: 232, frameHeight: 439 });
-  //   this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });
-  // }
+  preload() {
+    this.score = 0;
+    // this.load.spritesheet('ninjaIdle', ninjaIdle, { frameWidth: 232, frameHeight: 439 });
+    // this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });
+  }
 
   addPlatform(platformWidth, posX) {
     let platform;
@@ -24,7 +25,7 @@ class MainScene extends Phaser.Scene {
     } else {
       platform = this.physics.add.sprite(posX, 450, 'platform');
       platform.setScale(0.5);
-      platform.setVelocityX(Phaser.Math.Between(-180, -250));
+      platform.setVelocityX(Phaser.Math.Between(-150, -200));
       platform.setGravityY(-500);
       this.platformGroup.add(platform);
       platform.setImmovable(true);
@@ -81,7 +82,27 @@ class MainScene extends Phaser.Scene {
     });
 
     this.addPlatform(800, 400);
+
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+    // this.stars = this.physics.add.group({
+    //   key: 'star',
+    //   repeat: 4,
+    //   setXY: { x: 500, y: 300, stepX: 120 },
+    // });
+
+    // this.physics.add.collider(this.stars, this.platformGroup);
+    // this.physics.add.overlap(this.ninja, this.stars, this.collectStars, null, this);
+
+    this.timedEvent = this.time.addEvent({
+      delay: 7000,
+      callback: this.dropStars,
+      callbackScope: this,
+      loop: true,
+    });
+
     this.physics.add.collider(this.ninja, this.platformGroup);
+
   }
 
   update() {
@@ -144,6 +165,22 @@ class MainScene extends Phaser.Scene {
       );
       this.addPlatform(nextPlatformWidth, 900 + nextPlatformWidth / 2, nextPlatformHeight);
     }
+  }
+
+  collectStars(ninja, star) {
+    star.disableBody(true, true);
+    this.score += 10;
+    this.scoreText.setText(`Score: ${this.score}`);
+  }
+
+  dropStars() {
+    this.stars = this.physics.add.group({
+      key: 'star',
+      repeat: 4,
+      setXY: { x: 150, y: 300, stepX: 170 },
+    });
+    this.physics.add.collider(this.stars, this.platformGroup);
+    this.physics.add.overlap(this.ninja, this.stars, this.collectStars, null, this);
   }
 }
 
