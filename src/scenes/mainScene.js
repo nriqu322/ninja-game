@@ -9,7 +9,7 @@ class MainScene extends Phaser.Scene {
   }
 
   preload() {
-    this.score = 0;
+    window.score = 0;
     // this.load.spritesheet('ninjaIdle', ninjaIdle, { frameWidth: 232, frameHeight: 439 });
     // this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });
   }
@@ -163,14 +163,14 @@ class MainScene extends Phaser.Scene {
 
   collectStars(ninja, star) {
     star.disableBody(true, true);
-    this.score += 10;
-    this.scoreText.setText(`Score: ${this.score}`);
+    window.score += 10;
+    this.scoreText.setText(`Score: ${window.score}`);
   }
 
   collectKunais(ninja, kunai) {
     kunai.disableBody(true, true);
-    this.score += 25;
-    this.scoreText.setText(`Score: ${this.score}`);
+    window.score += 25;
+    this.scoreText.setText(`Score: ${window.score}`);
   }
 
   dropStars() {

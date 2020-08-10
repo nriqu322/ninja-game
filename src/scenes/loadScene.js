@@ -16,6 +16,7 @@ import block from '../assets/images/block.png';
 import leaderBoard from '../assets/images/leaderboard-btn.png';
 import star from '../assets/images/ninja-star.png';
 import kunai from '../assets/images/Kunai.png';
+import submitBtn from '../assets/images/submit-btn.png';
 
 class LoadScene extends Phaser.Scene {
   constructor() {
@@ -35,6 +36,7 @@ class LoadScene extends Phaser.Scene {
     this.load.image('ninjaIcon', ninjaIcon);
     this.load.image('star', star);
     this.load.image('kunai', kunai);
+    this.load.image('submitBtn', submitBtn);
     this.load.spritesheet('ninjaIdle', ninjaIdle, { frameWidth: 232, frameHeight: 439 });
     this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });
     this.load.spritesheet('ninjaRun', ninjaRun, { frameWidth: 348, frameHeight: 439 });

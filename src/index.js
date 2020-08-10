@@ -4,6 +4,8 @@ import MainMenu from './scenes/mainMenu';
 import LoadScene from './scenes/loadScene';
 import Instructions from './scenes/instructions';
 import GameOver from './scenes/gameOver';
+import LeaderBoard from './scenes/leaderBoard';
+import './assets/style.css';
 
 const config = {
   type: Phaser.AUTO,
@@ -16,6 +18,7 @@ const config = {
     Instructions,
     MainScene,
     GameOver,
+    LeaderBoard,
   ],
   physics: {
     default: 'arcade',
