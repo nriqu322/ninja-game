@@ -16,7 +16,7 @@ class GameOver extends Phaser.Scene {
     inputName.type = 'text';
     inputName.id = 'user-name';
     inputName.classList.add('input-name');
-    inputName.placeholder = 'Type your name';
+    inputName.placeholder = 'Type your name, max of 12 char.';
     document.getElementById('game-container').appendChild(inputName);
 
     // Recicle this as a function, is used in mainMenu.
@@ -57,8 +57,10 @@ class GameOver extends Phaser.Scene {
 
   getName() {
     this.name = document.getElementById('user-name').value;
-    saveScore(this.name, window.score);
-    this.callLeaderBoard();
+    if (this.name.length < 13) {
+      saveScore(this.name, window.score);
+      this.callLeaderBoard();
+    }
   }
 }
 

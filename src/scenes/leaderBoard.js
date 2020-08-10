@@ -10,7 +10,7 @@ class LeaderBoard extends Phaser.Scene {
     this.add.image(300, 250, 'background');
     this.add.image(450, 100, 'logo');
 
-    this.add.text(450, 220, 'LEADERBOARD', { fontSize: 36 }).setOrigin(0.5);
+    this.add.text(450, 190, 'LEADERBOARD', { fontSize: 36 }).setOrigin(0.5);
 
     this.loading = this.add.text(450, 350, 'Loading...', { fontSize: 26 }).setOrigin(0.5);
 
@@ -40,7 +40,7 @@ class LeaderBoard extends Phaser.Scene {
     });
 
     // Recicle this as a function, is used in mainMenu.
-    const playBtn = this.add.image(750, 550, 'playAgain').setScale(0.6);
+    const playBtn = this.add.image(750, 550, 'play').setScale(0.4);
     playBtn.setInteractive();
 
     playBtn.on('pointerover', () => {
@@ -59,13 +59,12 @@ class LeaderBoard extends Phaser.Scene {
   }
 
   async retrieveScore() {
-    const scores = await getScores();
-    // scores.orderBy('score', 'desc').limit(10);
-    console.log(scores);
+    const response = await getScores();
+    const scores = response.result.sort((x, y) => y.score - x.score);
     if (scores.empty) {
       this.loading.text = 'Scores are not available';
     } else {
-      this.displaySCores(scores);
+      this.displayScores(scores);
     }
   }
 
@@ -74,9 +73,9 @@ class LeaderBoard extends Phaser.Scene {
     let spaceY = 0;
     this.loading.text = '';
     info.forEach((data) => {
-      this.add.text(300, 200 + spaceY, '1', { fontsize: 20 });
-      this.add.text(320, 200 + spaceY, 'user', { fontsize: 20 });
-      this.add.text(470, 200 + spaceY, 'score', { fontsize: 20 });
+      this.add.text(340, 220 + spaceY, `${pos}.`, { fontSize: 20 });
+      this.add.text(370, 220 + spaceY, `${data.user}`, { fontSize: 20 });
+      this.add.text(510, 220 + spaceY, `${data.score}`, { fontSize: 20 });
       spaceY += 25;
       pos += 1;
     });
