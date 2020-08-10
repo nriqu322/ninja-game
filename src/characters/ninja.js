@@ -1,4 +1,4 @@
-// import Phaser from 'phaser';
+import Phaser from 'phaser';
 // import ninjaIdleP from '../assets/characters/ninja-idle.png';
 // import ninjaJumpP from '../assets/characters/ninja-jump.png';
 // import ninjaRunP from '../assets/characters/ninja-run.png';

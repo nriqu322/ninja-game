@@ -13,7 +13,7 @@ class Instructions extends Phaser.Scene {
     this.add.text(450, 180, 'A ninja tries to survive and give hope.', { fontSize: 20 }).setOrigin(0.5);
 
     this.add.text(450, 240, 'Mission', { fontSize: 26 }).setOrigin(0.5);
-    this.add.text(450, 280, 'Run for your life to survive', { fontSize: 20 }).setOrigin(0.5);
+    this.add.text(450, 280, 'Run for your life and collect weapons to fight.', { fontSize: 20 }).setOrigin(0.5);
 
     this.add.text(450, 340, 'Keyborad controls', { fontSize: 26 }).setOrigin(0.5);
     this.add.text(450, 380, 'Jump over platforms with the up arrow', { fontSize: 20 }).setOrigin(0.5);

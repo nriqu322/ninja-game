@@ -10,8 +10,6 @@ class MainScene extends Phaser.Scene {
 
   preload() {
     window.score = 0;
-    // this.load.spritesheet('ninjaIdle', ninjaIdle, { frameWidth: 232, frameHeight: 439 });
-    // this.load.spritesheet('ninjaJump', ninjaJump, { frameWidth: 352, frameHeight: 439 });
   }
 
   addPlatform(platformWidth, posX) {
@@ -41,7 +39,6 @@ class MainScene extends Phaser.Scene {
 
     this.ninja = this.physics.add.sprite(200, 300, 'ninjaIdle');
     this.ninja.setScale(0.12);
-    // this.ninja.setCollideWorldBounds(true);
 
     this.anims.create({
       key: 'idle',
