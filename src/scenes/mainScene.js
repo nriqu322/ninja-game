@@ -39,9 +39,6 @@ class MainScene extends Phaser.Scene {
     this.add.image(450, 300, 'sky').setScale(3.35);
     this.add.image(450, 300, 'city').setScale(3.35);
 
-    // this.block = this.add.image(30, 400, 'block').setScale(0.8);
-    // this.block2 = this.add.image(80, 400, 'block').setScale(0.8);
-
     this.ninja = this.physics.add.sprite(200, 300, 'ninjaIdle');
     this.ninja.setScale(0.12);
     // this.ninja.setCollideWorldBounds(true);
@@ -85,24 +82,21 @@ class MainScene extends Phaser.Scene {
 
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
-    // this.stars = this.physics.add.group({
-    //   key: 'star',
-    //   repeat: 4,
-    //   setXY: { x: 500, y: 300, stepX: 120 },
-    // });
-
-    // this.physics.add.collider(this.stars, this.platformGroup);
-    // this.physics.add.overlap(this.ninja, this.stars, this.collectStars, null, this);
-
     this.timedEvent = this.time.addEvent({
-      delay: 7000,
+      delay: 4000,
       callback: this.dropStars,
       callbackScope: this,
       loop: true,
     });
 
-    this.physics.add.collider(this.ninja, this.platformGroup);
+    this.timedEvent2 = this.time.addEvent({
+      delay: 10000,
+      callback: this.dropKunais,
+      callbackScope: this,
+      loop: true,
+    });
 
+    this.physics.add.collider(this.ninja, this.platformGroup);
   }
 
   update() {
@@ -173,6 +167,12 @@ class MainScene extends Phaser.Scene {
     this.scoreText.setText(`Score: ${this.score}`);
   }
 
+  collectKunais(ninja, kunai) {
+    kunai.disableBody(true, true);
+    this.score += 25;
+    this.scoreText.setText(`Score: ${this.score}`);
+  }
+
   dropStars() {
     this.stars = this.physics.add.group({
       key: 'star',
@@ -181,6 +181,19 @@ class MainScene extends Phaser.Scene {
     });
     this.physics.add.collider(this.stars, this.platformGroup);
     this.physics.add.overlap(this.ninja, this.stars, this.collectStars, null, this);
+  }
+
+  dropKunais() {
+    this.kunais = this.physics.add.group({
+      key: 'kunai',
+      repeat: 2,
+      setXY: { x: 300, y: 250, stepX: 400 },
+    });
+    this.kunais.children.each((kunai) => {
+      kunai.setScale(0.25);
+    }, this);
+    this.physics.add.collider(this.kunais, this.platformGroup);
+    this.physics.add.overlap(this.ninja, this.kunais, this.collectKunais, null, this);
   }
 }
 
