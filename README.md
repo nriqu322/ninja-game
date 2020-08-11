@@ -23,6 +23,7 @@ and was developed using Phaser 3.
 
 * You can use the up arrow key to jump over the infinite platforms.
 * Use the left and right arrow keys to move and redirect your jump.
+* The only way to survive is to mantain yourself above the platforms.
 
 #### Install
 
