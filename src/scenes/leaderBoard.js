@@ -69,16 +69,14 @@ class LeaderBoard extends Phaser.Scene {
   }
 
   displayScores(info) {
-    let pos = 1;
     let spaceY = 0;
     this.loading.text = '';
-    info.forEach((data) => {
-      this.add.text(340, 220 + spaceY, `${pos}.`, { fontSize: 20 });
-      this.add.text(370, 220 + spaceY, `${data.user}`, { fontSize: 20 });
-      this.add.text(510, 220 + spaceY, `${data.score}`, { fontSize: 20 });
+    for (let i = 1; i <= 10; i += 1) {
+      this.add.text(340, 220 + spaceY, `${i}.`, { fontSize: 20 });
+      this.add.text(375, 220 + spaceY, `${info[i].user}`, { fontSize: 20 });
+      this.add.text(510, 220 + spaceY, `${info[i].score}`, { fontSize: 20 });
       spaceY += 25;
-      pos += 1;
-    });
+    }
   }
 }
 

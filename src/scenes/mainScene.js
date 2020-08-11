@@ -5,10 +5,6 @@ class MainScene extends Phaser.Scene {
     super({ key: 'MainScene' });
   }
 
-  // preload() {
-  //   window.score = 0;
-  // }
-
   addPlatform(platformWidth, posX) {
     let platform;
     if (this.platformPool.getLength()) {
