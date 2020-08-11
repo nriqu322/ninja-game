@@ -45,7 +45,7 @@ class LeaderBoard extends Phaser.Scene {
 
     playBtn.on('pointerover', () => {
       hoverImage.setVisible(true);
-      hoverImage.x = playBtn.x - 150;
+      hoverImage.x = playBtn.x - 100;
       hoverImage.y = playBtn.y;
     });
 

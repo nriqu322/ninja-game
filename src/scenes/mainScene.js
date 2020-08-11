@@ -1,16 +1,13 @@
 import Phaser from 'phaser';
-import Ninja from '../characters/ninja';
-// import ninjaIdle from '../assets/characters/ninja-idle.png';
-// import ninjaJump from '../assets/characters/ninja-jump.png';
 
 class MainScene extends Phaser.Scene {
   constructor() {
     super({ key: 'MainScene' });
   }
 
-  preload() {
-    window.score = 0;
-  }
+  // preload() {
+  //   window.score = 0;
+  // }
 
   addPlatform(platformWidth, posX) {
     let platform;
@@ -33,6 +30,7 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
+    window.score = 0;
     this.add.image(450, 300, 'sky').setScale(3.35);
     this.add.image(450, 300, 'city').setScale(3.35);
 
