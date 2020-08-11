@@ -1,32 +1,14 @@
 import Phaser from 'phaser';
-import ninjaIdleP from '../assets/characters/ninja-idle.png';
-import ninjaJumpP from '../assets/characters/ninja-jump.png';
-import ninjaRunP from '../assets/characters/ninja-run.png';
-import ninjaDeadP from '../assets/characters/ninja-dead.png';
-import ninjaThrowP from '../assets/characters/ninja-throw.png';
 
-class Ninja extends Phaser.Physics.Arcade.Sprite {
-  /**
-  * @param {Phaser.Scene} scene
-  * @param {number} x
-  * @param {number} y
-  * @param {string} texture
-   */
-  constructor(some, x, y, sprite) {
-    super(some, x, y, sprite);
-    this.scene = some;
+class Hero extends Phaser.Physics.Arcade.Sprite {
+  constructor(scene, x, y, sprite) {
+    super(scene, x, y, sprite);
+    this.scene = scene;
     this.alive = true;
     this.setScale(0.12);
-    // this.createMoves();
-    // this.setCollideWorldBounds(true);
-  }
-
-  static loadMoves(scene) {
-    scene.load.spritesheet('ninjaIdle', ninjaIdleP, { frameWidth: 232, frameHeight: 439 });
-    scene.load.spritesheet('ninjaJump', ninjaJumpP, { frameWidth: 352, frameHeight: 439 });
-    scene.load.spritesheet('ninjaRun', ninjaRunP, { frameWidth: 348, frameHeight: 439 });
-    scene.load.spritesheet('ninjaDead', ninjaDeadP, { frameWidth: 425, frameHeight: 439 });
-    scene.load.spritesheet('ninjaThrow', ninjaThrowP, { frameWidth: 377, frameHeight: 439 });
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
+    this.createMoves();
   }
 
   createMoves() {
@@ -91,8 +73,8 @@ class Ninja extends Phaser.Physics.Arcade.Sprite {
 
   jump() {
     this.anims.play('jump', true);
-    this.setVelocityY(-250);
+    this.setVelocityY(-200);
   }
 }
 
-export default Ninja;
+export default Hero;

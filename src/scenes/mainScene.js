@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Hero from '../characters/ninja';
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -30,32 +31,7 @@ class MainScene extends Phaser.Scene {
     this.add.image(450, 300, 'sky').setScale(3.35);
     this.add.image(450, 300, 'city').setScale(3.35);
 
-    this.ninja = this.physics.add.sprite(200, 300, 'ninjaIdle');
-    this.ninja.setScale(0.12);
-    // console.log(this.ninja);
-    // this.ninja = new Ninja(this, 200, 300, 'ninjaIdle');
-    // console.log(this.ninja);
-
-    this.anims.create({
-      key: 'idle',
-      frames: this.anims.generateFrameNumbers('ninjaIdle', { start: 0, end: 9 }),
-      frameRate: 20,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: 'jump',
-      frames: this.anims.generateFrameNumbers('ninjaJump', { start: 0, end: 9 }),
-      frameRate: 40,
-      repeat: -1,
-    });
-
-    this.anims.create({
-      key: 'run',
-      frames: this.anims.generateFrameNumbers('ninjaRun', { start: 0, end: 9 }),
-      frameRate: 40,
-      repeat: -1,
-    });
+    this.ninja = new Hero(this, 200, 300, 'ninjaIdle');
 
     this.platformGroup = this.add.group({
       // once a platform is removed, it's added to the pool
@@ -95,25 +71,15 @@ class MainScene extends Phaser.Scene {
   update() {
     const cursors = this.input.keyboard.createCursorKeys();
     if (cursors.left.isDown) {
-      // this.ninja.move('left');
-      this.ninja.anims.play('run', true);
-      this.ninja.flipX = true;
-      this.ninja.setVelocityX(-160);
+      this.ninja.move('left');
     } else if (cursors.right.isDown) {
-      // this.ninja.move('right');
-      this.ninja.flipX = false;
-      this.ninja.anims.play('run', true);
-      this.ninja.setVelocityX(160);
+      this.ninja.move('right');
     } else {
-      // this.ninja.idle();
-      this.ninja.anims.play('idle', true);
-      this.ninja.setVelocityX(0);
+      this.ninja.idle();
     }
 
     if (cursors.up.isDown && this.ninja.body.touching.down) {
-      // this.ninja.jump();
-      this.ninja.anims.play('jump', true);
-      this.ninja.setVelocityY(-200);
+      this.ninja.jump();
     }
 
     if (this.ninja.y > 600) {
