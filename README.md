@@ -59,13 +59,13 @@ localhost:8080
 #### Ninja-Star
 ![star](src/assets/images/ninja-star.png)
 
-- Item : collectable
+- Item : collectible
 - Role : weapon
 
 #### Kunai
 ![kunai](src/assets/images/Kunai.png)
 
-- Item : collectable
+- Item : collectible
 - Role : weapon
 
 ### Scenes
