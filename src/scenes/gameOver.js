@@ -48,6 +48,7 @@ class GameOver extends Phaser.Scene {
 
     playBtn.on('pointerup', () => {
       this.scene.start('MainScene');
+      document.getElementById('user-name').remove();
     });
   }
 

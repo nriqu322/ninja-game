@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-// import Ninja from '../characters/ninja';
+import Ninja from '../characters/ninja';
 // import ninjaIdle from '../assets/characters/ninja-idle.png';
 // import ninjaJump from '../assets/characters/ninja-jump.png';
 
@@ -33,12 +33,14 @@ class MainScene extends Phaser.Scene {
   }
 
   create() {
-    // this.ninjaObj = new Ninja(this, 150, 500, 'ninjaIdle');
     this.add.image(450, 300, 'sky').setScale(3.35);
     this.add.image(450, 300, 'city').setScale(3.35);
 
     this.ninja = this.physics.add.sprite(200, 300, 'ninjaIdle');
     this.ninja.setScale(0.12);
+    // console.log(this.ninja);
+    // this.ninja = new Ninja(this, 200, 300, 'ninjaIdle');
+    // console.log(this.ninja);
 
     this.anims.create({
       key: 'idle',
@@ -99,19 +101,23 @@ class MainScene extends Phaser.Scene {
   update() {
     const cursors = this.input.keyboard.createCursorKeys();
     if (cursors.left.isDown) {
+      // this.ninja.move('left');
       this.ninja.anims.play('run', true);
       this.ninja.flipX = true;
       this.ninja.setVelocityX(-160);
     } else if (cursors.right.isDown) {
+      // this.ninja.move('right');
       this.ninja.flipX = false;
       this.ninja.anims.play('run', true);
       this.ninja.setVelocityX(160);
     } else {
+      // this.ninja.idle();
       this.ninja.anims.play('idle', true);
       this.ninja.setVelocityX(0);
     }
 
     if (cursors.up.isDown && this.ninja.body.touching.down) {
+      // this.ninja.jump();
       this.ninja.anims.play('jump', true);
       this.ninja.setVelocityY(-200);
     }

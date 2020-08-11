@@ -5,16 +5,21 @@ import Phaser from 'phaser';
 // import ninjaDeadP from '../assets/characters/ninja-dead.png';
 // import ninjaThrowP from '../assets/characters/ninja-throw.png';
 
-// class Ninja extends Phaser.Physics.Arcade.Sprite {
-//   constructor(some, x, y, sprite) {
-//     super(some, x, y, sprite);
-//     this.scene = some;
-//     this.health = 30;
-//     this.alive = true;
-//     this.setScale(0.2);
-//     // this.createMoves();
-//     // this.setCollideWorldBounds(true);
-//   }
+class Ninja extends Phaser.Physics.Arcade.Sprite {
+  /**
+  * @param {Phaser.Scene} scene
+  * @param {number} x
+  * @param {number} y
+  * @param {string} texture
+   */
+  constructor(some, x, y, sprite) {
+    super(some, x, y, sprite);
+    this.scene = some;
+    this.alive = true;
+    this.setScale(0.12);
+    // this.createMoves();
+    // this.setCollideWorldBounds(true);
+  }
 
 //   static loadMoves(scene) {
 //     scene.load.spritesheet('ninjaIdle', ninjaIdleP, { frameWidth: 232, frameHeight: 439 });
@@ -61,33 +66,33 @@ import Phaser from 'phaser';
 //     });
 //   }
 
-//   idle() {
-//     this.anims.play('idle', true);
-//     this.setVelocityX(0);
-//   }
+  idle() {
+    this.anims.play('idle', true);
+    this.setVelocityX(0);
+  }
 
-//   move(side) {
-//     switch (side) {
-//       case 'right': {
-//         this.flipX = false;
-//         this.anims.play('run', true);
-//         this.setVelocityX(160);
-//         break;
-//       }
-//       case 'left': {
-//         this.flipX = true;
-//         this.anims.play('run', true);
-//         this.setVelocityX(-160);
-//         break;
-//       }
-//       default: { break; }
-//     }
-//   }
+  move(side) {
+    switch (side) {
+      case 'right': {
+        this.flipX = false;
+        this.anims.play('run', true);
+        this.setVelocityX(160);
+        break;
+      }
+      case 'left': {
+        this.flipX = true;
+        this.anims.play('run', true);
+        this.setVelocityX(-160);
+        break;
+      }
+      default: { break; }
+    }
+  }
 
-//   jump() {
-//     this.anims.play('jump', true);
-//     this.setVelocityY(-250);
-//   }
-// }
+  jump() {
+    this.anims.play('jump', true);
+    this.setVelocityY(-250);
+  }
+}
 
-// export default Ninja;
+export default Ninja;

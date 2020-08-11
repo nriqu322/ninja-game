@@ -3,25 +3,25 @@ const api = {
   baseurl: 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/',
 };
 
-async function getScores() {
-  const response = await fetch(`${api.baseurl}${api.key}/scores/`);
-  return response.json();
-}
+const url = `${api.baseurl}${api.key}/scores/`;
 
-const saveScore = async (user, score) => {
+const getScores = () => fetch(url).then((response) => response.json());
+// const response = await fetch(`${api.baseurl}${api.key}/scores/`);
+// return response.json();
+
+const saveScore = (user, score) => {
   const object = {
     user,
     score,
   };
 
-  const result = await fetch(`${api.baseurl}${api.key}/scores/`, {
+  return fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(object),
-  });
-  return result.json();
+  }).then((response) => response.json());
 };
 
 export { getScores, saveScore };
