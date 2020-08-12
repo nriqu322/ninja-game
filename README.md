@@ -7,7 +7,7 @@ and was developed using Phaser 3.
 ## Project specifications
 * [Requirements](https://www.notion.so/Platform-game-4a55a7d1fcc245bcb012c76814764712)
 
-## Tha Game
+## The Game
 
 - The main character is a ninja that run trough a world dominated by an evil AI in the year 2320. The first stage and main scene of this game is where our hero has to collect ninja-stars and kunais(knifes) to get points. The goal is to collect as many weapons as you can to be able to fight enemies in next stages(to be design).
 

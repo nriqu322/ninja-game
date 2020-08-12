@@ -20,7 +20,6 @@ class LeaderBoard extends Phaser.Scene {
     hoverImage.setScale(0.08);
     hoverImage.setVisible(false);
 
-    // Recicle this as a function, is used in Instructions.
     const menuBtn = this.add.image(150, 550, 'menu').setScale(0.4);
 
     menuBtn.setInteractive();
@@ -39,7 +38,6 @@ class LeaderBoard extends Phaser.Scene {
       this.scene.start('MainMenu');
     });
 
-    // Recicle this as a function, is used in mainMenu.
     const playBtn = this.add.image(750, 550, 'play').setScale(0.4);
     playBtn.setInteractive();
 

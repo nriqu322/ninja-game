@@ -5,11 +5,7 @@ const api = {
 
 const url = `${api.baseurl}${api.key}/scores/`;
 
-const getScores = () => fetch(url).then((response) => response.json());
-// const response = await fetch(`${api.baseurl}${api.key}/scores/`);
-// return response.json();
-
-const saveScore = (user, score) => {
+const saveScore = (user, score = 0) => {
   const object = {
     user,
     score,
@@ -23,5 +19,11 @@ const saveScore = (user, score) => {
     body: JSON.stringify(object),
   }).then((response) => response.json());
 };
+
+const getScores = () => fetch(url)
+  .then((response) => response.json())
+  .catch((error) => error);
+// const response = await fetch(`${api.baseurl}${api.key}/scores/`);
+// return response.json();
 
 export { getScores, saveScore };

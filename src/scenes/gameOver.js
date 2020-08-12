@@ -19,7 +19,6 @@ class GameOver extends Phaser.Scene {
     inputName.placeholder = 'Type a max of 12 char.';
     document.getElementById('game-container').appendChild(inputName);
 
-    // Recicle this as a function, is used in mainMenu.
     const hoverImage = this.add.image(100, 100, 'ninjaIcon').setDepth(1);
     hoverImage.setScale(0.1);
     hoverImage.setVisible(false);
@@ -32,7 +31,6 @@ class GameOver extends Phaser.Scene {
       this.getName();
     });
 
-    // Recicle this as a function, is used in mainMenu.
     const playBtn = this.add.image(450, 450, 'playAgain').setScale(0.8);
     playBtn.setInteractive();
 
@@ -52,17 +50,17 @@ class GameOver extends Phaser.Scene {
     });
   }
 
-  callLeaderBoard() {
-    document.getElementById('user-name').remove();
-    this.scene.start('LeaderBoard');
-  }
-
   getName() {
     this.name = document.getElementById('user-name').value;
-    if (this.name.length < 13) {
+    if (this.name.length < 13 && this.name.length > 1) {
       saveScore(this.name, window.score);
       this.callLeaderBoard();
     }
+  }
+
+  callLeaderBoard() {
+    document.getElementById('user-name').remove();
+    this.scene.start('LeaderBoard');
   }
 }
 

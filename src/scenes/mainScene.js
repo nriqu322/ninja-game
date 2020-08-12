@@ -6,26 +6,6 @@ class MainScene extends Phaser.Scene {
     super({ key: 'MainScene' });
   }
 
-  addPlatform(platformWidth, posX) {
-    let platform;
-    if (this.platformPool.getLength()) {
-      platform = this.platformPool.getFirst();
-      platform.x = posX;
-      platform.active = true;
-      platform.visible = true;
-      this.platformPool.remove(platform);
-    } else {
-      platform = this.physics.add.sprite(posX, 450, 'platform');
-      platform.setScale(0.5);
-      platform.setVelocityX(Phaser.Math.Between(-150, -200));
-      platform.setGravityY(-500);
-      this.platformGroup.add(platform);
-      platform.setImmovable(true);
-    }
-    platform.displayWidth = platformWidth;
-    this.nextPlatformDistance = Phaser.Math.Between(70, 200);
-  }
-
   create() {
     window.score = 0;
     this.add.image(450, 300, 'sky').setScale(3.35);
@@ -34,14 +14,12 @@ class MainScene extends Phaser.Scene {
     this.ninja = new Hero(this, 200, 300, 'ninjaIdle');
 
     this.platformGroup = this.add.group({
-      // once a platform is removed, it's added to the pool
       removeCallback(platform) {
         platform.scene.platformPool.add(platform);
       },
     });
 
     this.platformPool = this.add.group({
-      // once a platform is removed from the pool, it's added to the active platforms group
       removeCallback(platform) {
         platform.scene.platformGroup.add(platform);
       },
@@ -69,28 +47,29 @@ class MainScene extends Phaser.Scene {
   }
 
   update() {
-    const cursors = this.input.keyboard.createCursorKeys();
-    if (cursors.left.isDown) {
+    this.cursors = this.input.keyboard.createCursorKeys();
+    if (this.cursors.left.isDown) {
       this.ninja.move('left');
-    } else if (cursors.right.isDown) {
+    } else if (this.cursors.right.isDown) {
       this.ninja.move('right');
     } else {
       this.ninja.idle();
     }
 
-    if (cursors.up.isDown && this.ninja.body.touching.down) {
+    if (this.cursors.up.isDown && this.ninja.body.touching.down) {
       this.ninja.jump();
     }
 
     if (this.ninja.y > 600) {
+      this.ninja.alive = false;
       this.scene.start('GameOver');
     }
 
     if (this.ninja.x < -50) {
+      this.ninja.alive = false;
       this.scene.start('GameOver');
     }
 
-    // recycling platforms
     let minDistance = 900;
     let rightmostPlatformHeight = 0;
 
@@ -107,7 +86,6 @@ class MainScene extends Phaser.Scene {
       }
     }, this);
 
-    // adding new platforms
     if (minDistance > this.nextPlatformDistance) {
       const nextPlatformWidth = Phaser.Math.Between(50, 250);
       const platformRandomHeight = 10 * Phaser.Math.Between(-40, 40);
@@ -122,6 +100,26 @@ class MainScene extends Phaser.Scene {
       );
       this.addPlatform(nextPlatformWidth, 900 + nextPlatformWidth / 2, nextPlatformHeight);
     }
+  }
+
+  addPlatform(platformWidth, posX) {
+    let platform;
+    if (this.platformPool.getLength()) {
+      platform = this.platformPool.getFirst();
+      platform.x = posX;
+      platform.active = true;
+      platform.visible = true;
+      this.platformPool.remove(platform);
+    } else {
+      platform = this.physics.add.sprite(posX, 450, 'platform');
+      platform.setScale(0.5);
+      platform.setVelocityX(Phaser.Math.Between(-150, -200));
+      platform.setGravityY(-500);
+      this.platformGroup.add(platform);
+      platform.setImmovable(true);
+    }
+    platform.displayWidth = platformWidth;
+    this.nextPlatformDistance = Phaser.Math.Between(70, 200);
   }
 
   collectStars(ninja, star) {
@@ -140,7 +138,7 @@ class MainScene extends Phaser.Scene {
     this.stars = this.physics.add.group({
       key: 'star',
       repeat: 4,
-      setXY: { x: 150, y: 300, stepX: 170 },
+      setXY: { x: 150, y: 230, stepX: 170 },
     });
     this.physics.add.collider(this.stars, this.platformGroup);
     this.physics.add.overlap(this.ninja, this.stars, this.collectStars, null, this);
@@ -150,7 +148,7 @@ class MainScene extends Phaser.Scene {
     this.kunais = this.physics.add.group({
       key: 'kunai',
       repeat: 2,
-      setXY: { x: 300, y: 250, stepX: 400 },
+      setXY: { x: 300, y: 230, stepX: 400 },
     });
     this.kunais.children.each((kunai) => {
       kunai.setScale(0.25);

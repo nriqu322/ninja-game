@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 
 class Hero extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y, sprite) {
-    super(scene, x, y, sprite);
+  constructor(scene, x, y, texture) {
+    super(scene, x, y, texture);
     this.scene = scene;
     this.alive = true;
     this.setScale(0.12);
