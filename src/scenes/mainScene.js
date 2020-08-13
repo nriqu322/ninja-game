@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Hero from '../characters/ninja';
+import Helper from '../helper';
 
 class MainScene extends Phaser.Scene {
   constructor() {
@@ -60,14 +61,8 @@ class MainScene extends Phaser.Scene {
       this.ninja.jump();
     }
 
-    if (this.ninja.y > 600) {
-      this.ninja.alive = false;
-      this.scene.start('GameOver');
-    }
-
-    if (this.ninja.x < -50) {
-      this.ninja.alive = false;
-      this.scene.start('GameOver');
+    if (this.ninja.y > 600 || this.ninja.x < -50) {
+      Helper.ninjaDead(this);
     }
 
     let minDistance = 900;
@@ -124,13 +119,13 @@ class MainScene extends Phaser.Scene {
 
   collectStars(ninja, star) {
     star.disableBody(true, true);
-    window.score += 10;
+    Helper.updateScore(this, 10);
     this.scoreText.setText(`Score: ${window.score}`);
   }
 
   collectKunais(ninja, kunai) {
     kunai.disableBody(true, true);
-    window.score += 25;
+    Helper.updateScore(this, 25);
     this.scoreText.setText(`Score: ${window.score}`);
   }
 

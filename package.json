@@ -21,6 +21,7 @@
     "eslint-plugin-import": "^2.20.2",
     "file-loader": "^6.0.0",
     "jest": "^26.3.0",
+    "jest-canvas-mock": "^2.2.0",
     "style-loader": "^1.2.1",
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
@@ -30,6 +31,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "babel-jest": "^26.3.0",
     "babel-polyfill": "^6.26.0",
     "eslint-plugin-jest": "^23.20.0",
@@ -39,6 +41,9 @@
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
-    }
+    },
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
   }
 }

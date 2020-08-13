@@ -58,7 +58,7 @@ class LeaderBoard extends Phaser.Scene {
 
   async retrieveScore() {
     const response = await getScores();
-    const scores = response.result.sort((x, y) => y.score - x.score);
+    const scores = response.sort((x, y) => y.score - x.score);
     if (scores.empty) {
       this.loading.text = 'Scores are not available';
     } else {
@@ -69,8 +69,8 @@ class LeaderBoard extends Phaser.Scene {
   displayScores(info) {
     let spaceY = 0;
     this.loading.text = '';
-    for (let i = 1; i <= 10; i += 1) {
-      this.add.text(340, 220 + spaceY, `${i}.`, { fontSize: 20 });
+    for (let i = 0; i <= 9; i += 1) {
+      this.add.text(340, 220 + spaceY, `${i + 1}.`, { fontSize: 20 });
       this.add.text(375, 220 + spaceY, `${info[i].user}`, { fontSize: 20 });
       this.add.text(510, 220 + spaceY, `${info[i].score}`, { fontSize: 20 });
       spaceY += 25;
