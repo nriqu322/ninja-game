@@ -101,7 +101,7 @@ You can use ``` $ npm run {script here} ``` with the following commands :
 - "watch": "webpack --mode development --watch"
 
 ## Testing
-Unit test with Jest. You can run the tests with the following code:
+Unit tests with Jest. You can run the tests with the following code:
 
 ``` $ npm test ```
 
