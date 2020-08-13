@@ -94,11 +94,16 @@ localhost:8080
 * ESlint and Stylelint as linters
 
 ## Available scripts
-You can use ``` npm run {script here} ``` with the following commands :
+You can use ``` $ npm run {script here} ``` with the following commands :
 
 - "test": "jest"
 - "build": "webpack --mode production".
 - "watch": "webpack --mode development --watch"
+
+## Testing
+Unit test with Jest. You can run the tests with the following code:
+
+``` $ npm test ```
 
 ## Future Features
 * Ability to throw collected ninja-tars and kunais
