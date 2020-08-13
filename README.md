@@ -119,7 +119,7 @@ Development of a platform game as part of the Microverse curriculum to show tech
 6. Add enemies and game sound. 
 7. Add unit test using Jest.
 
-### Achivements
+### Achievements
 1. Choose a ninja as main character and city as environment. Select a infinite platform game.
 2. Use Open Game Art for platform image and ninja sprite sheet, then use Figma website to create the sprite sheets for ninja actions.
 3. Write code for different scenes: Load Scene, Instructions, Main Menu, Main Scene and GameOver Scene.
