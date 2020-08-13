@@ -16,19 +16,7 @@ const saveScore = (user, score = 0) => {
   return axios
     .post(url, object)
     .then(response => response.data);
-
-  // return fetch(url, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify(object),
-  // }).then((response) => response.json());
 };
-
-// const getScores = () => fetch(url)
-//   .then((response) => response.json())
-//   .catch((error) => error);
 
 const getScores = () => axios
   .get(url)
