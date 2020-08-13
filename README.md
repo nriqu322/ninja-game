@@ -11,7 +11,7 @@ and was developed using Phaser 3.
 
 - The main character is a ninja that run trough a world dominated by an evil AI in the year 2320. The first stage and main scene of this game is where our hero has to collect ninja-stars and kunais(knifes) to get points. The goal is to collect as many weapons as you can to be able to fight enemies in next stages(to be design).
 
-- Make sure to jump at the right moment because platform appears at different height and move at different speed.
+- Make sure to jump at the right moment because platforms appears at different height and move at different speed.
 
 - The main characters and items where taken from [Open Game Art](https://opengameart.org/).
 
@@ -101,9 +101,32 @@ You can use ``` npm run {script here} ``` with the following commands :
 - "watch": "webpack --mode development --watch"
 
 ## Future Features
-* Ability to throw collected ninja stars and kunais
+* Ability to throw collected ninja-tars and kunais
 * More stages
-* Add enemies to fight
+* Add enemies to fight.
+
+## Project Design
+
+### Project purpuse
+Development of a platform game as part of the Microverse curriculum to show technical and soft skills learned through the curriculum. Use of Phaser 3 to develop the game.
+
+### Objectives
+1. Design the game, selecting a main theme for the game and characters.
+2. Research for assets and media content: sprite sheets and images.
+3. Write code for the game: Scenes, Characters.
+4. Add a score system
+5. Include a backend API to store a leader board.
+6. Add enemies and game sound. 
+7. Add unit test using Jest.
+
+### Achivements
+1. Choose a ninja as main character and city as environment. Select a infinite platform game.
+2. Use Open Game Art for platform image and ninja sprite sheet, then use Figma website to create the sprite sheets for ninja actions.
+3. Write code for different scenes: Load Scene, Instructions, Main Menu, Main Scene and GameOver Scene.
+4. Add ninja-star and kunai as collectible items for the score system.
+5. Send request to get the API key and code LeaderBoard Scene
+6. Couldn't be able to add sound and enemies. This is going to be in added future features.
+7. Use axios and jest mocks to add tests.
 
 ## Author
 
