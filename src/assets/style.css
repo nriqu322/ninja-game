@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.input-name {
+  position: absolute;
+  top: 250px;
+  left: 360px;
+  padding: 7px;
+  border-radius: 25px;
+  outline: none;
+}
