@@ -35,7 +35,7 @@
     "babel-jest": "^26.3.0",
     "babel-polyfill": "^6.26.0",
     "eslint-plugin-jest": "^23.20.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "phaser": "^3.23.0"
   },
   "jest": {
